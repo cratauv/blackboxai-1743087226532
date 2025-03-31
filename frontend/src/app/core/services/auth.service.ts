@@ -63,6 +63,11 @@ export class AuthService {
       );
   }
 
+  getProfile(): Observable<User> {
+    const userId = this.getCurrentUserId();
+    return this.http.get<User>(`${this.API_URL}/users/${userId}`);
+  }
+
   logout(): void {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
